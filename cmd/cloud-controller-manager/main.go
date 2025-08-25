@@ -82,6 +82,13 @@ func main() {
 		Constructor: nodeIpamController.startNodeIpamControllerWrapper,
 	}
 
+	controllerInitializers[names.ServiceLBController] = app.ControllerInitFuncConstructor{
+		InitContext: app.ControllerInitContext{
+			ClientName: "service-controller",
+		},
+		Constructor: startGkeServiceControllerWrapper,
+	}
+
 	controllerInitializers["gkenetworkparamset"] = app.ControllerInitFuncConstructor{
 		Constructor: startGkeNetworkParamSetControllerWrapper,
 	}
